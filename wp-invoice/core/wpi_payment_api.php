@@ -6,8 +6,8 @@
 class WPI_Payment_Api {
 
   const WPI_METHOD_AUTHORIZE_NET   = 'wpi_authorize';
-	const WPI_METHOD_PAYPAL   = 'wpi_paypal';
-	const WPI_METHOD_CHARGIFY = 'wpi_chargify';
+  const WPI_METHOD_PAYPAL   = 'wpi_paypal';
+  const WPI_METHOD_CHARGIFY = 'wpi_chargify';
   const WPI_METHOD_TWOCHECKOUT = 'wpi_twocheckout';
 
   const WPI_METHOD_STATUS_COMPLETE = 'Complete';

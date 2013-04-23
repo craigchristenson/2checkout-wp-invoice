@@ -44,6 +44,16 @@ class wpi_twocheckout extends wpi_gateway_base {
           'Y' => "Yes"
         )
       ),
+      'direct_checkout' => array(
+          'label' => "Direct Checkout",
+          'description' => "Use Direct Checkout",
+          'type' => 'select',
+          'value' => 'Y',
+          'data' => array(
+              'N' => "No",
+              'Y' => "Yes"
+          )
+      ),
       'button_url' => array(
         'label' => "2Checkout Button URL",
         'value' => "https://www.2checkout.com/images/paymentlogoshorizontal.png"

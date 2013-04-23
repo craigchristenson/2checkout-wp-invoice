@@ -60,3 +60,10 @@
     </ul>
 
   </div>
+</form>
+
+<?php
+    if ( $invoice['billing']['wpi_twocheckout']['settings']['direct_checkout']['value'] == 'Y' ) {
+        echo '<script src="https://www.2checkout.com/static/checkout/javascript/direct.min.js"></script>';
+    }
+?>
