@@ -14,7 +14,7 @@
 
   <input type="hidden" name="li_0_name" value="<?php echo $invoice['post_title']; ?>">
   <?php if ( is_recurring() ): ?>
-  <?php switch ( $invoice['recurring']['unit'] ) {
+  <?php switch ( $invoice['recurring']['wpi_twocheckout']['unit'] ) {
           case 'months':
             $subscription_unit = "Month";
             break;
@@ -27,9 +27,9 @@
         }
     ?>
     <input type="hidden" name="li_0_description" value="Invoice ID: <?php echo $invoice['invoice_id']; ?>">
-    <input type="hidden" name="li_0_duration" value="<?php echo (int)$invoice['recurring']['cycles']; ?> <?php echo $subscription_unit; ?>">
+    <input type="hidden" name="li_0_duration" value="<?php echo (int)$invoice['recurring']['wpi_twocheckout']['cycles']; ?> <?php echo $subscription_unit; ?>">
     <input type="hidden" name="li_0_price" value="<?php echo number_format( (float)$invoice['net'], 2, '.', '' ); ?>">
-    <input type="hidden" name="li_0_recurrence" value="<?php echo (int)$invoice['recurring']['length']; ?> <?php echo $subscription_unit; ?>">
+    <input type="hidden" name="li_0_recurrence" value="<?php echo (int)$invoice['recurring']['wpi_twocheckout']['length']; ?> <?php echo $subscription_unit; ?>">
   <?php else: ?>
     <input type="hidden" name="li_0_description" value="Invoice ID: <?php echo $invoice['invoice_id']; ?>">
     <input type="hidden" name="li_0_price" value="<?php echo number_format( (float)$invoice['net'], 2, '.', '' ); ?>">

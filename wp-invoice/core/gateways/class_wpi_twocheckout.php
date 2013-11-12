@@ -10,156 +10,173 @@ Description: Provides the 2Checkout for payment options
 
 class wpi_twocheckout extends wpi_gateway_base {
 
-	/**
-   * Input types
+  /**
+   * Constructor
    */
-  const TEXT_INPUT_TYPE   = 'text';
-  const SELECT_INPUT_TYPE = 'select';
-
-	/**
-	 * Payment settings
-	 *
-	 * @var array
-	 */
-  var $options = array(
-    'name' => '2Checkout',
-    'allow' => '',
-    'default_option' => '',
-    'settings' => array(
-      'twocheckout_sid' => array(
-        'label' => "2Checkout Seller ID",
-        'value' => ''
-      ),
-      'twocheckout_secret' => array(
-        'label' => "2Checkout Secret Word",
-        'value' => ''
-      ),
-      'test_mode' => array(
-        'label' => "Demo Mode",
-        'description' => "Use 2Checkout Demo Mode",
-        'type' => 'select',
-        'value' => 'N',
-        'data' => array(
-          'N' => "No",
-          'Y' => "Yes"
-        )
-      ),
-      'direct_checkout' => array(
-          'label' => "Direct Checkout",
-          'description' => "Use Direct Checkout",
-          'type' => 'select',
-          'value' => 'Y',
-          'data' => array(
-              'N' => "No",
-              'Y' => "Yes"
-          )
-      ),
-      'button_url' => array(
-        'label' => "2Checkout Button URL",
-        'value' => "https://www.2checkout.com/images/paymentlogoshorizontal.png"
-      ),
-      'ipn' => array(
-        'label' => "2Checkout Approved URL/INS URL",
-        'type' => "readonly",
-        'description' => "Set this URL as your Approved URL in your 2Checkout Site Management page and Notification URL under your 2Checkout Notification page."
-      )
-    )
-  );
-
-	/**
-   * Fields list for frontend
-   */
-  var $front_end_fields = array(
-
-    'customer_information' => array(
-
-      'first_name'  => array(
-        'type'  => 'text',
-        'class' => 'text-input',
-        'name'  => 'first_name',
-        'label' => 'First Name'
-      ),
-
-      'last_name'   => array(
-        'type'  => 'text',
-        'class' => 'text-input',
-        'name'  => 'last_name',
-        'label' => 'Last Name'
-      ),
-
-      'user_email'  => array(
-        'type'  => 'text',
-        'class' => 'text-input',
-        'name'  => 'email_address',
-        'label' => 'Email Address'
-      ),
-
-			'phonenumber' => array(
-				array(
-					'type'  => 'text',
-					'class' => 'text-input small',
-					'name'  => 'night_phone_a'
-				),
-				array(
-					'type'  => 'text',
-					'class' => 'text-input small',
-					'name'  => 'night_phone_b'
-				),
-				array(
-					'type'  => 'text',
-					'class' => 'text-input small',
-					'name'  => 'night_phone_c'
-				)
-			),
-
-      'streetaddress'     => array(
-        'type'  => 'text',
-        'class' => 'text-input',
-        'name'  => 'address1',
-        'label' => 'Address'
-      ),
-
-      'city'        => array(
-        'type'  => 'text',
-        'class' => 'text-input',
-        'name'  => 'city',
-        'label' => 'City'
-      ),
-
-      'state'       => array(
-        'type'   => 'text',
-        'class'  => 'text-input',
-        'name'   => 'state',
-        'label'  => 'State/Province'
-      ),
-
-      'zip'         => array(
-        'type'  => 'text',
-        'class' => 'text-input',
-        'name'  => 'zip',
-        'label' => 'Zip/Postal Code'
-      ),
-
-      'country'     => array(
-        'type'   => 'text',
-        'class'  => 'text-input',
-        'name'   => 'country',
-        'label'  => 'Country'
-      )
-
-    )
-
-  );
-
-	/**
-	 * Constructor
-	 */
   function __construct() {
     parent::__construct();
+
+  	/**
+  	 * Payment settings
+  	 *
+  	 * @var array
+  	 */
+     $this->options = array(
+      'name' => '2Checkout',
+      'allow' => '',
+      'default_option' => '',
+      'settings' => array(
+        'twocheckout_sid' => array(
+          'label' => "2Checkout Seller ID",
+          'value' => ''
+        ),
+        'twocheckout_secret' => array(
+          'label' => "2Checkout Secret Word",
+          'value' => ''
+        ),
+        'test_mode' => array(
+          'label' => "Demo Mode",
+          'description' => "Use 2Checkout Demo Mode",
+          'type' => 'select',
+          'value' => 'N',
+          'data' => array(
+            'N' => "No",
+            'Y' => "Yes"
+          )
+        ),
+        'direct_checkout' => array(
+            'label' => "Direct Checkout",
+            'description' => "Use Direct Checkout",
+            'type' => 'select',
+            'value' => 'Y',
+            'data' => array(
+                'N' => "No",
+                'Y' => "Yes"
+            )
+        ),
+        'button_url' => array(
+          'label' => "2Checkout Button URL",
+          'value' => "https://www.2checkout.com/upload/images/paymentlogoshorizontal.png"
+        ),
+        'ipn' => array(
+          'label' => "2Checkout Approved URL/INS URL",
+          'type' => "readonly",
+          'description' => "Set this URL as your Approved URL in your 2Checkout Site Management page and Notification URL under your 2Checkout Notification page."
+        )
+      )
+    );
+
+  	/**
+     * Fields list for frontend
+     */
+    $this->front_end_fields = array(
+
+      'customer_information' => array(
+
+        'first_name'  => array(
+          'type'  => 'text',
+          'class' => 'text-input',
+          'name'  => 'first_name',
+          'label' => __( 'First Name', WPI )
+        ),
+
+        'last_name'   => array(
+          'type'  => 'text',
+          'class' => 'text-input',
+          'name'  => 'last_name',
+          'label' => __( 'Last Name', WPI )
+        ),
+
+        'user_email'  => array(
+          'type'  => 'text',
+          'class' => 'text-input',
+          'name'  => 'email_address',
+          'label' => __( 'Email Address', WPI )
+        ),
+
+  			'phonenumber' => array(
+  				array(
+  					'type'  => 'text',
+  					'class' => 'text-input small',
+  					'name'  => 'night_phone_a'
+  				),
+  				array(
+  					'type'  => 'text',
+  					'class' => 'text-input small',
+  					'name'  => 'night_phone_b'
+  				),
+  				array(
+  					'type'  => 'text',
+  					'class' => 'text-input small',
+  					'name'  => 'night_phone_c'
+  				)
+  			),
+
+        'streetaddress'     => array(
+          'type'  => 'text',
+          'class' => 'text-input',
+          'name'  => 'address1',
+          'label' => __( 'Address', WPI )
+        ),
+
+        'city'        => array(
+          'type'  => 'text',
+          'class' => 'text-input',
+          'name'  => 'city',
+          'label' => __( 'City', WPI )
+        ),
+
+        'state'       => array(
+          'type'   => 'text',
+          'class'  => 'text-input',
+          'name'   => 'state',
+          'label'  => __( 'State/Province', WPI )
+        ),
+
+        'zip'         => array(
+          'type'  => 'text',
+          'class' => 'text-input',
+          'name'  => 'zip',
+          'label' => __( 'Zip/Postal Code', WPI )
+        ),
+
+        'country'     => array(
+          'type'   => 'text',
+          'class'  => 'text-input',
+          'name'   => 'country',
+          'label'  => __( 'Country', WPI )
+        )
+
+      )
+
+    );
+
     $this->options['settings']['ipn']['value'] = admin_url('admin-ajax.php?action=wpi_gateway_server_callback&type=wpi_twocheckout');
 
-		add_action( 'wpi_payment_fields_twocheckout', array( $this, 'wpi_payment_fields' ) );
 	}
+
+      /**
+     *
+     * @param type $this_invoice
+     */
+    function recurring_settings( $this_invoice ) {
+      ?>
+      <h4><?php _e( '2Checkout Subscriptions', WPI ); ?></h4>
+      <table class="wpi_recurring_bill_settings">
+        <tr>
+          <th><?php _e( 'Bill Every', WPI ); ?></th>
+          <td>
+            <?php echo WPI_UI::input("name=wpi_invoice[recurring][".$this->type."][length]&value=" . (!empty($this_invoice['recurring'][$this->type]) ? $this_invoice['recurring'][$this->type]['length'] : '') . "&class=wpi_small wpi_bill_every_length"); ?>
+            <?php echo WPI_UI::select("name=wpi_invoice[recurring][".$this->type."][unit]&values=" . serialize(array( "days" => __("Day(s)", WPI), "weeks" => __("Week(s)", WPI), "months" => __("Month(s)", WPI), "years" => __("Year(s)", WPI) )) . "&current_value=" . (!empty($this_invoice['recurring'][$this->type]) ? $this_invoice['recurring'][$this->type]['unit'] : '')); ?>
+          </td>
+        </tr>
+        <tr>
+          <th><?php _e( 'Billing Cycles', WPI ); ?></th>
+          <td><?php echo WPI_UI::input("id=wpi_meta_recuring_cycles&name=wpi_invoice[recurring][".$this->type."][cycles]&value=" . (!empty($this_invoice['recurring'][$this->type]) ? $this_invoice['recurring'][$this->type]['cycles'] : '') . "&class=wpi_small"); ?></td>
+        </tr>
+      </table>
+      <?php
+    }
 
 	/**
 	 * Overrided payment process for 2Checkout
@@ -171,9 +188,9 @@ class wpi_twocheckout extends wpi_gateway_base {
 		global $invoice, $wpi_settings;
 
 		$crm_data    = $_REQUEST['crm_data'];
-    $invoice_id  = $invoice['invoice_id'];
-    $wp_users_id = $invoice['user_data']['ID'];
-    $post_id     = wpi_invoice_id_to_post_id($invoice_id);
+        $invoice_id  = $invoice['invoice_id'];
+        $wp_users_id = $invoice['user_data']['ID'];
+        $post_id     = wpi_invoice_id_to_post_id($invoice_id);
 
 		// update user data
 		update_user_meta($wp_users_id, 'last_name', $_REQUEST['last_name']);
