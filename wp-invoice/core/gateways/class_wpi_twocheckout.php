@@ -45,8 +45,8 @@ class wpi_twocheckout extends wpi_gateway_base {
           )
         ),
         'direct_checkout' => array(
-            'label' => "Direct Checkout",
-            'description' => "Use Direct Checkout",
+            'label' => "Inline Checkout",
+            'description' => "Use Inline Checkout",
             'type' => 'select',
             'value' => 'Y',
             'data' => array(
